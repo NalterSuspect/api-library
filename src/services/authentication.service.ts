@@ -28,21 +28,15 @@ export class AuthenticationService {
       var scopes; 
       if(username=="admin"){
         scopes={
-        "author": ["create","read","write","delete"],
-        "book": ["create","read","write", "delete"],
-        "bookcollection": ["create","read","write","delete"]
+        "scopes": ["author:create","author:read","author:write","author:delete","book:create","book:read","book:write", "book:delete","bookcollection:create","bookcollection:read","bookcollection:write","bookcollection:delete"]
       }
       }else if(username=="gerant"){
         scopes={
-          "author": ["create","read","write"],
-          "book": ["create","read","write"],
-          "bookcollection": ["create","read","write","delete"]
+          "scopes": ["author:create","author:read","author:write","book:create","book:read","book:write","bookcollection:create","bookcollection:read","bookcollection:write","bookcollection:delete"]
         }
       }else if(username=="utilisateur"){
         scopes={
-          "author": ["read"],
-          "book": ["create","read"],
-          "bookcollection": ["read"]
+          "scopes": ["author:read","book:create","book:read","bookcollection:read"]
         }
       }
 

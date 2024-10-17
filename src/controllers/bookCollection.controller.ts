@@ -20,13 +20,13 @@ import { bookCollectionService } from "../services/bookCollection.service";
 @Tags("BookCollections")
 export class BookCollectionController extends Controller {
   @Get("/")
-  @Security("jwt",["read"])
+  @Security("jwt",["bookcollection:read"])
   public async getAllBooksCollection(): Promise<BookCollectionOutputDTO[]> {
     return bookCollectionService.getAllBookCollections();
   }
 
   @Get("{id}")
-  @Security("jwt",["read"])
+  @Security("jwt",["bookcollection:read"])
   public async getBookCollection(
     @Path("id") id: number,
   ): Promise<BookCollectionOutputDTO> {
@@ -34,7 +34,7 @@ export class BookCollectionController extends Controller {
   }
 
   @Post("/")
-  @Security("jwt",["create"])
+  @Security("jwt",["bookcollection:create"])
   public async postBookCollection(
     @Body() requestBody: BookCollectionInputDTO,
   ): Promise<BookCollectionOutputDTO> {
@@ -46,7 +46,7 @@ export class BookCollectionController extends Controller {
   }
 
   @Patch("{id}")
-  @Security("jwt",["write"])
+  @Security("jwt",["bookcollection:write"])
   public async patchBookCollection(
     @Path("id") id: number,
     @Body() requestBody: BookCollectionInputPatchDTO,
@@ -60,7 +60,7 @@ export class BookCollectionController extends Controller {
   }
 
   @Delete("{id}")
-  @Security("jwt",["delete"])
+  @Security("jwt",["bookcollection:delete"])
   public async deleteBookCollection(@Path("id") id: number): Promise<void> {
     await bookCollectionService.deleteBookCollection(id);
   }
