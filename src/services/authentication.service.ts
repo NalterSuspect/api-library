@@ -25,6 +25,27 @@ export class AuthenticationService {
     // Vérifie si le mot de passe est correct
     if (password === decodedPassword) {
       // Si l'utilisateur est authentifié, on génère un JWT
+      var scopes; 
+      if(username=="admin"){
+        scopes={
+        "author": ["create","read","write","delete"],
+        "book": ["create","read","write", "delete"],
+        "bookcollection": ["create","read","write","delete"]
+      }
+      }else if(username=="gerant"){
+        scopes={
+          "author": ["create","read","write"],
+          "book": ["create","read","write"],
+          "bookcollection": ["create","read","write","delete"]
+        }
+      }else if(username=="utilisateur"){
+        scopes={
+          "author": ["read"],
+          "book": ["create","read"],
+          "bookcollection": ["read"]
+        }
+      }
+
       const token = jwt.sign({ username: user.username }, JWT_SECRET, {
         expiresIn: "1h",
       });
